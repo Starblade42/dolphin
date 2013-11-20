@@ -7,6 +7,8 @@ class Author(models.Model):
 	authorID = models.CharField(max_length=50)
 	lastName = models.CharField(max_length=50)
 	firstName = models.CharField(max_length=50)
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.authorID + ": " + self.lastName + " " + self.firstName
 	
 
 #Blog	blogId	authorID	title	subtitle	editor
@@ -18,6 +20,8 @@ class Blog(models.Model):
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=120)
 	editor = models.ForeignKey(Author, blank=True, related_name='author_blog_editor')
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.blogId + ": " + self.title
 	
 #Article	articleId	title	subtitle	authorId	body	sources
 
@@ -28,6 +32,10 @@ class Article(models.Model):
 	authorId = models.ForeignKey(Author, related_name='author_article')
 	body = models.TextField()
 	sources = models.TextField()
+	datePosted = models.DateField()
+	timestamp = models.DateTimeField()
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.articleId + ": " + self.title
 
 #Updates	authorID	articleID	timestamp
 #This will create and Auto-Incrementing ID primary key!
@@ -35,7 +43,9 @@ class Article(models.Model):
 class Update(models.Model):
 	authorID = models.ForeignKey(Author, related_name='author_update')
 	articleID = models.ForeignKey(Article, related_name='article_update')
-	timestamp = models.TimeField()
+	timestamp = models.DateTimeField()
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.articleID + ": " + self.timestamp
 
 
 
@@ -48,6 +58,7 @@ class Review(models.Model):
 	body = models.TextField()
 	score = models.CharField(max_length=256)
 	datePosted = models.DateField()
+	timestamp = models.DateTimeField()
 	productId = models.CharField(max_length=256)
 
 
@@ -60,6 +71,8 @@ class Media(models.Model):
 	authorID = models.ForeignKey(Author, related_name='author_media')
 	mediaType = models.CharField(max_length=256)
 	location = models.CharField(max_length=256)
+	datePosted = models.DateField()
+	timestamp = models.DateTimeField()
 
 #Tutorial	tutorialId	title	subtitle	authorId	body	productId
 
@@ -70,6 +83,8 @@ class Tutorial(models.Model):
 	authorID = models.ForeignKey(Author, related_name='author_tutorial')
 	body = models.TextField()
 	productId = models.CharField(max_length=256)
+	datePosted = models.DateField()
+	timestamp = models.DateTimeField()
 
 #FavoriteLink	authorID	title	description	URL
 
