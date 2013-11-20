@@ -65,7 +65,7 @@ class Media(models.Model)
 
 class Tutorial(models.Model)
 	tutorialId = models.CharField(max_length=256)
-	title = models.
+	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
 	authorID = models.ForeignKey(Author)
 	body = models.TextField()
