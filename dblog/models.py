@@ -15,27 +15,27 @@ class Author(models.Model):
 #This will create and Auto-Incrementing ID primary key!
 
 class Blog(models.Model):
-	blogId = models.CharField(max_length=50)
+	blogID = models.CharField(max_length=50)
 	authorID = models.ForeignKey(Author, related_name='author_blog')
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=120)
 	editor = models.ForeignKey(Author, blank=True, related_name='author_blog_editor')
 	def __unicode__(self):  # Python 3: def __str__(self):
-        	return self.blogId + ": " + self.title
+        	return self.blogID + ": " + self.title
 	
 #Article	articleId	title	subtitle	authorId	body	sources
 
 class Article(models.Model):
-	articleId = models.CharField(max_length=140)
+	articleID = models.CharField(max_length=140)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
-	authorId = models.ForeignKey(Author, related_name='author_article')
+	authorID = models.ForeignKey(Author, related_name='author_article')
 	body = models.TextField()
 	sources = models.TextField()
 	datePosted = models.DateField()
 	timestamp = models.DateTimeField()
 	def __unicode__(self):  # Python 3: def __str__(self):
-        	return self.articleId + ": " + self.title
+        	return self.articleID + ": " + self.title
 
 #Updates	authorID	articleID	timestamp
 #This will create and Auto-Incrementing ID primary key!
@@ -52,20 +52,22 @@ class Update(models.Model):
 #Review	reviewId	title	subtitle	body	score	datePosted	productId
 
 class Review(models.Model):
-	reviewId = models.CharField(max_length=256)
+	reviewID = models.CharField(max_length=256)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
 	body = models.TextField()
 	score = models.CharField(max_length=256)
 	datePosted = models.DateField()
 	timestamp = models.DateTimeField()
-	productId = models.CharField(max_length=256)
+	productID = models.CharField(max_length=256)
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.reviewID + ": " + self.title
 
 
 #Media	mediaId	title	subtitle	authorId	type	location
 
 class Media(models.Model):
-	mediaId = models.CharField(max_length=256)
+	mediaID = models.CharField(max_length=256)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
 	authorID = models.ForeignKey(Author, related_name='author_media')
@@ -73,18 +75,22 @@ class Media(models.Model):
 	location = models.CharField(max_length=256)
 	datePosted = models.DateField()
 	timestamp = models.DateTimeField()
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.mediaID + ": " + self.title
 
 #Tutorial	tutorialId	title	subtitle	authorId	body	productId
 
 class Tutorial(models.Model):
-	tutorialId = models.CharField(max_length=256)
+	tutorialID = models.CharField(max_length=256)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
 	authorID = models.ForeignKey(Author, related_name='author_tutorial')
 	body = models.TextField()
-	productId = models.CharField(max_length=256)
+	productID = models.CharField(max_length=256)
 	datePosted = models.DateField()
 	timestamp = models.DateTimeField()
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.tutorialID + ": " + self.title
 
 #FavoriteLink	authorID	title	description	URL
 
@@ -93,6 +99,8 @@ class FavoriteLink(models.Model):
 	title = models.CharField(max_length=256)
 	description = models.TextField()
 	URL = models.CharField(max_length=256)
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.authorID + ": " + self.title
 
 #Bio	authorID	title	subtitle	body	hometown	hobbies
 
@@ -103,3 +111,5 @@ class Bio(models.Model):
 	body = models.TextField()
 	hometown = models.CharField(max_length=50)
 	hobbies = models.TextField()
+	def __unicode__(self):  # Python 3: def __str__(self):
+        	return self.authorID + ": " + self.title
