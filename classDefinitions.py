@@ -14,10 +14,10 @@ class Author(models.Model):
 
 class Blog(models.Model):
 	blogId = models.CharField(max_length=50)
-	authorID = models.ForeignKey(Author)
+	authorID = models.ForeignKey(Author, related_name='authorID')
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=120)
-	editor = models.ForeignKey(Author, blank=true)
+	editor = models.ForeignKey(Author, blank=True, related_name='authorID')
 	
 #Article	articleId	title	subtitle	authorId	body	sources
 
@@ -25,7 +25,7 @@ class Article(models.Model):
 	articleId = models.CharField(max_length=140)
 	title = models.Charfield(max_length=256)
 	subtitle = models.Charfield(max_length=256)
-	authorId = models.ForeignKey(Author)
+	authorId = models.ForeignKey(Author, related_name='authorID')
 	body = model.TextField()
 	sources = models.TextField()
 
@@ -33,8 +33,8 @@ class Article(models.Model):
 #This will create and Auto-Incrementing ID primary key!
 
 class Updates(models.Model):
-	authorID = models.ForeignKey(Author)
-	articleID = models.ForeignKey(Article)
+	authorID = models.ForeignKey(Author, related_name='authorID')
+	articleID = models.ForeignKey(Article, related_name='articleId')
 	timestamp = models.TimeField()
 
 
@@ -57,7 +57,7 @@ class Media(models.Model)
 	mediaId = model.CharField(max_length=256)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
-	authorID = models.ForeignKey(Author)
+	authorID = models.ForeignKey(Author, related_name='authorID')
 	mediaType = models.CharField(max_length=256)
 	location = models.CharField(max_length=256)
 
@@ -67,14 +67,14 @@ class Tutorial(models.Model)
 	tutorialId = models.CharField(max_length=256)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
-	authorID = models.ForeignKey(Author)
+	authorID = models.ForeignKey(Author, related_name='authorID')
 	body = models.TextField()
 	productId = models.CharField(max_length=256)
 
 #FavoriteLink	authorID	title	description	URL
 
 class FavoriteLink(models.Model)
-	authorID = models.ForeignKey(Author)
+	authorID = models.ForeignKey(Author, related_name='authorID')
 	title = models.CharField(max_length=256)
 	description = models.TextField()
 	URL = models.CharField(max_length=256)
@@ -82,7 +82,7 @@ class FavoriteLink(models.Model)
 #Bio	authorID	title	subtitle	body	hometown	hobbies
 
 class Bio(models.Model):
-	authorID = models.ForeignKey(Author)
+	authorID = models.ForeignKey(Author, related_name='authorID')
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256)
 	body = models.TextField()
