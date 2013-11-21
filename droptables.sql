@@ -1,0 +1,9 @@
+drop table dblog_author;
+drop table dblog_blog;
+drop table dblog_article;
+drop table dblog_update;
+drop table dblog_review;
+drop table dblog_media;
+drop table dblog_tutorial;
+drop table dblog_favoritelink;
+drop table dblog_bio;
