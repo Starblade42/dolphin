@@ -54,6 +54,7 @@ class Review(models.Model):
 	reviewID = models.CharField(max_length=256, null=True, blank=True)
 	title = models.CharField(max_length=256)
 	subtitle = models.CharField(max_length=256, null=True, blank=True)
+	authorID = models.ForeignKey(Author, related_name='author_review')
 	body = models.TextField()
 	score = models.CharField(max_length=256, null=True, blank=True)
 	timestamp = models.DateTimeField()
