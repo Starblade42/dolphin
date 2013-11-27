@@ -1,0 +1,303 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE "auth_permission" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(50) NOT NULL,
+    "content_type_id" integer NOT NULL,
+    "codename" varchar(100) NOT NULL,
+    UNIQUE ("content_type_id", "codename")
+);
+INSERT INTO "auth_permission" VALUES(1,'Can add group',2,'add_group');
+INSERT INTO "auth_permission" VALUES(2,'Can add permission',1,'add_permission');
+INSERT INTO "auth_permission" VALUES(3,'Can add user',3,'add_user');
+INSERT INTO "auth_permission" VALUES(4,'Can change group',2,'change_group');
+INSERT INTO "auth_permission" VALUES(5,'Can change permission',1,'change_permission');
+INSERT INTO "auth_permission" VALUES(6,'Can change user',3,'change_user');
+INSERT INTO "auth_permission" VALUES(7,'Can delete group',2,'delete_group');
+INSERT INTO "auth_permission" VALUES(8,'Can delete permission',1,'delete_permission');
+INSERT INTO "auth_permission" VALUES(9,'Can delete user',3,'delete_user');
+INSERT INTO "auth_permission" VALUES(10,'Can add content type',4,'add_contenttype');
+INSERT INTO "auth_permission" VALUES(11,'Can change content type',4,'change_contenttype');
+INSERT INTO "auth_permission" VALUES(12,'Can delete content type',4,'delete_contenttype');
+INSERT INTO "auth_permission" VALUES(13,'Can add session',5,'add_session');
+INSERT INTO "auth_permission" VALUES(14,'Can change session',5,'change_session');
+INSERT INTO "auth_permission" VALUES(15,'Can delete session',5,'delete_session');
+INSERT INTO "auth_permission" VALUES(16,'Can add site',6,'add_site');
+INSERT INTO "auth_permission" VALUES(17,'Can change site',6,'change_site');
+INSERT INTO "auth_permission" VALUES(18,'Can delete site',6,'delete_site');
+INSERT INTO "auth_permission" VALUES(19,'Can add log entry',7,'add_logentry');
+INSERT INTO "auth_permission" VALUES(20,'Can change log entry',7,'change_logentry');
+INSERT INTO "auth_permission" VALUES(21,'Can delete log entry',7,'delete_logentry');
+INSERT INTO "auth_permission" VALUES(22,'Can add author',8,'add_author');
+INSERT INTO "auth_permission" VALUES(23,'Can change author',8,'change_author');
+INSERT INTO "auth_permission" VALUES(24,'Can delete author',8,'delete_author');
+INSERT INTO "auth_permission" VALUES(25,'Can add blog',9,'add_blog');
+INSERT INTO "auth_permission" VALUES(26,'Can change blog',9,'change_blog');
+INSERT INTO "auth_permission" VALUES(27,'Can delete blog',9,'delete_blog');
+INSERT INTO "auth_permission" VALUES(28,'Can add article',10,'add_article');
+INSERT INTO "auth_permission" VALUES(29,'Can change article',10,'change_article');
+INSERT INTO "auth_permission" VALUES(30,'Can delete article',10,'delete_article');
+INSERT INTO "auth_permission" VALUES(31,'Can add update',11,'add_update');
+INSERT INTO "auth_permission" VALUES(32,'Can change update',11,'change_update');
+INSERT INTO "auth_permission" VALUES(33,'Can delete update',11,'delete_update');
+INSERT INTO "auth_permission" VALUES(34,'Can add review',12,'add_review');
+INSERT INTO "auth_permission" VALUES(35,'Can change review',12,'change_review');
+INSERT INTO "auth_permission" VALUES(36,'Can delete review',12,'delete_review');
+INSERT INTO "auth_permission" VALUES(37,'Can add media',13,'add_media');
+INSERT INTO "auth_permission" VALUES(38,'Can change media',13,'change_media');
+INSERT INTO "auth_permission" VALUES(39,'Can delete media',13,'delete_media');
+INSERT INTO "auth_permission" VALUES(40,'Can add tutorial',14,'add_tutorial');
+INSERT INTO "auth_permission" VALUES(41,'Can change tutorial',14,'change_tutorial');
+INSERT INTO "auth_permission" VALUES(42,'Can delete tutorial',14,'delete_tutorial');
+INSERT INTO "auth_permission" VALUES(43,'Can add favorite link',15,'add_favoritelink');
+INSERT INTO "auth_permission" VALUES(44,'Can change favorite link',15,'change_favoritelink');
+INSERT INTO "auth_permission" VALUES(45,'Can delete favorite link',15,'delete_favoritelink');
+INSERT INTO "auth_permission" VALUES(46,'Can add bio',16,'add_bio');
+INSERT INTO "auth_permission" VALUES(47,'Can change bio',16,'change_bio');
+INSERT INTO "auth_permission" VALUES(48,'Can delete bio',16,'delete_bio');
+CREATE TABLE "auth_group_permissions" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "group_id" integer NOT NULL,
+    "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"),
+    UNIQUE ("group_id", "permission_id")
+);
+CREATE TABLE "auth_group" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(80) NOT NULL UNIQUE
+);
+CREATE TABLE "auth_user_user_permissions" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "user_id" integer NOT NULL,
+    "permission_id" integer NOT NULL REFERENCES "auth_permission" ("id"),
+    UNIQUE ("user_id", "permission_id")
+);
+CREATE TABLE "auth_user_groups" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "user_id" integer NOT NULL,
+    "group_id" integer NOT NULL REFERENCES "auth_group" ("id"),
+    UNIQUE ("user_id", "group_id")
+);
+CREATE TABLE "auth_user" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "username" varchar(30) NOT NULL UNIQUE,
+    "first_name" varchar(30) NOT NULL,
+    "last_name" varchar(30) NOT NULL,
+    "email" varchar(75) NOT NULL,
+    "password" varchar(128) NOT NULL,
+    "is_staff" bool NOT NULL,
+    "is_active" bool NOT NULL,
+    "is_superuser" bool NOT NULL,
+    "last_login" datetime NOT NULL,
+    "date_joined" datetime NOT NULL
+);
+INSERT INTO "auth_user" VALUES(1,'it350','','','zarcos@gmail.com','pbkdf2_sha256$12000$L74SSOIP9YnB$PvO2LB1vv8VLGCt2N1haNzhlbYqTZfp22sxp6Rq++PA=',1,1,1,'2013-11-27 02:02:21.529280','2013-11-20 22:32:26.947408');
+CREATE TABLE "django_content_type" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "name" varchar(100) NOT NULL,
+    "app_label" varchar(100) NOT NULL,
+    "model" varchar(100) NOT NULL,
+    UNIQUE ("app_label", "model")
+);
+INSERT INTO "django_content_type" VALUES(1,'permission','auth','permission');
+INSERT INTO "django_content_type" VALUES(2,'group','auth','group');
+INSERT INTO "django_content_type" VALUES(3,'user','auth','user');
+INSERT INTO "django_content_type" VALUES(4,'content type','contenttypes','contenttype');
+INSERT INTO "django_content_type" VALUES(5,'session','sessions','session');
+INSERT INTO "django_content_type" VALUES(6,'site','sites','site');
+INSERT INTO "django_content_type" VALUES(7,'log entry','admin','logentry');
+INSERT INTO "django_content_type" VALUES(8,'author','dblog','author');
+INSERT INTO "django_content_type" VALUES(9,'blog','dblog','blog');
+INSERT INTO "django_content_type" VALUES(10,'article','dblog','article');
+INSERT INTO "django_content_type" VALUES(11,'update','dblog','update');
+INSERT INTO "django_content_type" VALUES(12,'review','dblog','review');
+INSERT INTO "django_content_type" VALUES(13,'media','dblog','media');
+INSERT INTO "django_content_type" VALUES(14,'tutorial','dblog','tutorial');
+INSERT INTO "django_content_type" VALUES(15,'favorite link','dblog','favoritelink');
+INSERT INTO "django_content_type" VALUES(16,'bio','dblog','bio');
+CREATE TABLE "django_session" (
+    "session_key" varchar(40) NOT NULL PRIMARY KEY,
+    "session_data" text NOT NULL,
+    "expire_date" datetime NOT NULL
+);
+INSERT INTO "django_session" VALUES('4r8c3e91djttxnc4huyho2d6jdhz9rhg','YmE0ZmI3ZDI2YjI3YjJjYjFmNGI5NTdhNGE1OTZmY2E0MWRkOWQ2Zjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=','2013-12-11 01:17:15.425271');
+INSERT INTO "django_session" VALUES('9c9nsgwp2cukkeb3lbmehkqpqs4bdpl8','YmE0ZmI3ZDI2YjI3YjJjYjFmNGI5NTdhNGE1OTZmY2E0MWRkOWQ2Zjp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=','2013-12-11 02:02:21.665158');
+CREATE TABLE "django_site" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "domain" varchar(100) NOT NULL,
+    "name" varchar(50) NOT NULL
+);
+INSERT INTO "django_site" VALUES(1,'example.com','example.com');
+CREATE TABLE "django_admin_log" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "action_time" datetime NOT NULL,
+    "user_id" integer NOT NULL REFERENCES "auth_user" ("id"),
+    "content_type_id" integer REFERENCES "django_content_type" ("id"),
+    "object_id" text,
+    "object_repr" varchar(200) NOT NULL,
+    "action_flag" smallint unsigned NOT NULL,
+    "change_message" text NOT NULL
+);
+INSERT INTO "django_admin_log" VALUES(1,'2013-11-27 01:42:21.986587',1,8,'1','0: Dowling Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(2,'2013-11-27 01:50:22.196963',1,9,'1','0: Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(3,'2013-11-27 02:03:37.052753',1,8,'1','brady: Dowling Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(4,'2013-11-27 02:04:01.583980',1,9,'1','1: Made Up',1,'');
+INSERT INTO "django_admin_log" VALUES(5,'2013-11-27 02:17:12.906724',1,8,'2','zarcos: Huff Jonathan',1,'');
+INSERT INTO "django_admin_log" VALUES(6,'2013-11-27 02:17:33.012546',1,8,'3','airman: Jordan Michael',1,'');
+INSERT INTO "django_admin_log" VALUES(7,'2013-11-27 02:17:58.771764',1,8,'4','blaked693: Dowling Blake',1,'');
+INSERT INTO "django_admin_log" VALUES(8,'2013-11-27 02:35:33.604374',1,8,'1','mavsman: Dowling Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(9,'2013-11-27 02:35:49.766217',1,8,'2','zarcos: Huff Jonathan',1,'');
+INSERT INTO "django_admin_log" VALUES(10,'2013-11-27 02:36:20.646413',1,8,'3','blaked693: Dowling Blake',1,'');
+INSERT INTO "django_admin_log" VALUES(11,'2013-11-27 02:36:31.793415',1,8,'4','cpd4224: Dowling Cory',1,'');
+INSERT INTO "django_admin_log" VALUES(12,'2013-11-27 02:37:14.763197',1,10,'1','0: First Article',1,'');
+INSERT INTO "django_admin_log" VALUES(13,'2013-11-27 02:38:04.964562',1,10,'2','1: Second Test',1,'');
+INSERT INTO "django_admin_log" VALUES(14,'2013-11-27 02:39:12.011762',1,10,'3','2: Another Article Title',1,'');
+INSERT INTO "django_admin_log" VALUES(15,'2013-11-27 02:39:54.535114',1,10,'4','3: Fourth Blog: ID is 3',1,'');
+INSERT INTO "django_admin_log" VALUES(16,'2013-11-27 02:40:16.047451',1,10,'5','4: Too Many Titles',1,'');
+INSERT INTO "django_admin_log" VALUES(17,'2013-11-27 02:40:37.537600',1,10,'6','5: Yet Another',1,'');
+INSERT INTO "django_admin_log" VALUES(18,'2013-11-27 02:41:10.118270',1,10,'7','6: More Titles',1,'');
+INSERT INTO "django_admin_log" VALUES(19,'2013-11-27 02:41:38.198924',1,10,'8','7: The Last',1,'');
+INSERT INTO "django_admin_log" VALUES(20,'2013-11-27 02:42:53.089186',1,9,'1','0: New blog',1,'');
+INSERT INTO "django_admin_log" VALUES(21,'2013-11-27 02:43:06.617768',1,9,'2','1: Jon''s Blog',1,'');
+INSERT INTO "django_admin_log" VALUES(22,'2013-11-27 02:43:18.288099',1,9,'3','2: Blake''s Blog',1,'');
+INSERT INTO "django_admin_log" VALUES(23,'2013-11-27 02:43:29.920805',1,9,'4','3: Cory''s Blog',1,'');
+INSERT INTO "django_admin_log" VALUES(24,'2013-11-27 02:43:46.563017',1,9,'5','4: Another Test For Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(25,'2013-11-27 02:44:50.715047',1,13,'1','0: Test Media For Cory',1,'');
+INSERT INTO "django_admin_log" VALUES(26,'2013-11-27 02:46:10.198110',1,13,'2',': Testing media for Blake',1,'');
+INSERT INTO "django_admin_log" VALUES(27,'2013-11-27 02:46:40.337801',1,13,'3',': Test Media for Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(28,'2013-11-27 02:47:16.150418',1,13,'4',': Jonathan''s Media',1,'');
+INSERT INTO "django_admin_log" VALUES(29,'2013-11-27 02:49:27.334782',1,12,'1',': Reviewing a iPhone 6',1,'');
+INSERT INTO "django_admin_log" VALUES(30,'2013-11-27 02:57:56.077869',1,8,'1','mavsman: Dowling Brady',1,'');
+INSERT INTO "django_admin_log" VALUES(31,'2013-11-27 02:59:05.066945',1,10,'1','Yolo: You Only Live Once',1,'');
+INSERT INTO "django_admin_log" VALUES(32,'2013-11-27 02:59:36.313300',1,9,'1','Fake Blog: A blog that is very Fake',1,'');
+INSERT INTO "django_admin_log" VALUES(33,'2013-11-27 03:00:44.116278',1,13,'1',': Youtube Video',1,'');
+INSERT INTO "django_admin_log" VALUES(34,'2013-11-27 03:01:20.631164',1,12,'1',': iPhone 6',1,'');
+INSERT INTO "django_admin_log" VALUES(35,'2013-11-27 03:02:21.797841',1,14,'1','django_stuff: Making a Django Site',1,'');
+CREATE TABLE "dblog_author" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "authorID" varchar(50) NOT NULL,
+    "lastName" varchar(50) NOT NULL,
+    "firstName" varchar(50) NOT NULL
+);
+INSERT INTO "dblog_author" VALUES(1,'mavsman','Dowling','Brady');
+CREATE TABLE "dblog_blog" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "blogID" varchar(50) NOT NULL,
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "title" varchar(120) NOT NULL,
+    "subtitle" varchar(120),
+    "editor_id" integer REFERENCES "dblog_author" ("id")
+);
+INSERT INTO "dblog_blog" VALUES(1,'Fake Blog',1,'A blog that is very Fake','',NULL);
+CREATE TABLE "dblog_article" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "articleID" varchar(140) NOT NULL,
+    "title" varchar(256) NOT NULL,
+    "subtitle" varchar(256),
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "body" text NOT NULL,
+    "sources" text,
+    "timestamp" datetime NOT NULL
+);
+INSERT INTO "dblog_article" VALUES(1,'Yolo','You Only Live Once','',1,'authorID = models.ForeignKey(Author, related_name=''author_media'')
+authorID = models.ForeignKey(Author, related_name=''author_media'')
+authorID = models.ForeignKey(Author, related_name=''author_media'')
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')','','2013-11-27 01:59:03');
+CREATE TABLE "dblog_update" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "articleID_id" integer NOT NULL REFERENCES "dblog_article" ("id"),
+    "timestamp" datetime NOT NULL
+);
+CREATE TABLE "dblog_review" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "reviewID" varchar(256),
+    "title" varchar(256) NOT NULL,
+    "subtitle" varchar(256),
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "body" text NOT NULL,
+    "score" varchar(256),
+    "timestamp" datetime NOT NULL,
+    "productID" varchar(256)
+);
+INSERT INTO "dblog_review" VALUES(1,'','iPhone 6','',1,'authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')','0','2013-11-27 02:01:18','');
+CREATE TABLE "dblog_media" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "mediaID" varchar(256),
+    "title" varchar(256) NOT NULL,
+    "subtitle" varchar(256),
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "mediaType" varchar(256) NOT NULL,
+    "location" varchar(256) NOT NULL,
+    "timestamp" datetime NOT NULL
+);
+INSERT INTO "dblog_media" VALUES(1,'','Youtube Video','',1,'Video','Here','2013-11-27 02:00:42');
+CREATE TABLE "dblog_tutorial" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "tutorialID" varchar(256) NOT NULL,
+    "title" varchar(256) NOT NULL,
+    "subtitle" varchar(256),
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "body" text NOT NULL,
+    "timestamp" datetime NOT NULL
+);
+INSERT INTO "dblog_tutorial" VALUES(1,'django_stuff','Making a Django Site','',1,'This is how you make a django site:
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')
+
+authorID = models.ForeignKey(Author, related_name=''author_media'')authorID = models.ForeignKey(Author, related_name=''author_media'')','2013-11-27 02:02:20');
+CREATE TABLE "dblog_favoritelink" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "title" varchar(256) NOT NULL,
+    "description" text,
+    "URL" varchar(256) NOT NULL
+);
+CREATE TABLE "dblog_bio" (
+    "id" integer NOT NULL PRIMARY KEY,
+    "authorID_id" integer NOT NULL REFERENCES "dblog_author" ("id"),
+    "title" varchar(256),
+    "subtitle" varchar(256),
+    "body" text NOT NULL,
+    "hometown" varchar(50) NOT NULL,
+    "hobbies" text NOT NULL
+);
+CREATE INDEX "auth_permission_e4470c6e" ON "auth_permission" ("content_type_id");
+CREATE INDEX "auth_group_permissions_bda51c3c" ON "auth_group_permissions" ("group_id");
+CREATE INDEX "auth_group_permissions_1e014c8f" ON "auth_group_permissions" ("permission_id");
+CREATE INDEX "auth_user_user_permissions_fbfc09f1" ON "auth_user_user_permissions" ("user_id");
+CREATE INDEX "auth_user_user_permissions_1e014c8f" ON "auth_user_user_permissions" ("permission_id");
+CREATE INDEX "auth_user_groups_fbfc09f1" ON "auth_user_groups" ("user_id");
+CREATE INDEX "auth_user_groups_bda51c3c" ON "auth_user_groups" ("group_id");
+CREATE INDEX "django_session_c25c2c28" ON "django_session" ("expire_date");
+CREATE INDEX "django_admin_log_6340c63c" ON "django_admin_log" ("user_id");
+CREATE INDEX "django_admin_log_37ef4eb4" ON "django_admin_log" ("content_type_id");
+CREATE INDEX "dblog_blog_c0982ebe" ON "dblog_blog" ("authorID_id");
+CREATE INDEX "dblog_blog_c2be667f" ON "dblog_blog" ("editor_id");
+CREATE INDEX "dblog_article_c0982ebe" ON "dblog_article" ("authorID_id");
+CREATE INDEX "dblog_update_c0982ebe" ON "dblog_update" ("authorID_id");
+CREATE INDEX "dblog_update_61d83a31" ON "dblog_update" ("articleID_id");
+CREATE INDEX "dblog_review_c0982ebe" ON "dblog_review" ("authorID_id");
+CREATE INDEX "dblog_media_c0982ebe" ON "dblog_media" ("authorID_id");
+CREATE INDEX "dblog_tutorial_c0982ebe" ON "dblog_tutorial" ("authorID_id");
+CREATE INDEX "dblog_favoritelink_c0982ebe" ON "dblog_favoritelink" ("authorID_id");
+CREATE INDEX "dblog_bio_c0982ebe" ON "dblog_bio" ("authorID_id");
+COMMIT;
