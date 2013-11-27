@@ -18,7 +18,7 @@ class Blog(models.Model):
 	blogID = models.CharField(max_length=50)
 	authorID = models.ForeignKey(Author, related_name='author_blog')
 	title = models.CharField(max_length=120)
-	subtitle = models.CharField(max_length=120)
+	subtitle = models.CharField(max_length=120, null=True, blank=True)
 	editor = models.ForeignKey(Author, null=True, blank=True, related_name='author_blog_editor')
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.blogID + ": " + self.title
@@ -28,11 +28,10 @@ class Blog(models.Model):
 class Article(models.Model):
 	articleID = models.CharField(max_length=140)
 	title = models.CharField(max_length=256)
-	subtitle = models.CharField(max_length=256)
+	subtitle = models.CharField(max_length=256, null=True, blank=True)
 	authorID = models.ForeignKey(Author, related_name='author_article')
 	body = models.TextField()
-	sources = models.TextField()
-	datePosted = models.DateField()
+	sources = models.TextField(null=True, blank=True)
 	timestamp = models.DateTimeField()
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.articleID + ": " + self.title
@@ -52,14 +51,13 @@ class Update(models.Model):
 #Review	reviewId	title	subtitle	body	score	datePosted	productId
 
 class Review(models.Model):
-	reviewID = models.CharField(max_length=256)
+	reviewID = models.CharField(max_length=256, null=True, blank=True)
 	title = models.CharField(max_length=256)
-	subtitle = models.CharField(max_length=256)
+	subtitle = models.CharField(max_length=256, null=True, blank=True)
 	body = models.TextField()
-	score = models.CharField(max_length=256)
-	datePosted = models.DateField()
+	score = models.CharField(max_length=256, null=True, blank=True)
 	timestamp = models.DateTimeField()
-	productID = models.CharField(max_length=256)
+	productID = models.CharField(max_length=256, null=True, blank=True)
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.reviewID + ": " + self.title
 
@@ -67,13 +65,12 @@ class Review(models.Model):
 #Media	mediaId	title	subtitle	authorId	type	location
 
 class Media(models.Model):
-	mediaID = models.CharField(max_length=256)
+	mediaID = models.CharField(max_length=256, null=True, blank=True)
 	title = models.CharField(max_length=256)
-	subtitle = models.CharField(max_length=256)
+	subtitle = models.CharField(max_length=256, null=True, blank=True)
 	authorID = models.ForeignKey(Author, related_name='author_media')
 	mediaType = models.CharField(max_length=256)
 	location = models.CharField(max_length=256)
-	datePosted = models.DateField()
 	timestamp = models.DateTimeField()
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.mediaID + ": " + self.title
@@ -83,11 +80,9 @@ class Media(models.Model):
 class Tutorial(models.Model):
 	tutorialID = models.CharField(max_length=256)
 	title = models.CharField(max_length=256)
-	subtitle = models.CharField(max_length=256)
+	subtitle = models.CharField(max_length=256, null=True, blank=True)
 	authorID = models.ForeignKey(Author, related_name='author_tutorial')
 	body = models.TextField()
-	productID = models.CharField(max_length=256)
-	datePosted = models.DateField()
 	timestamp = models.DateTimeField()
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.tutorialID + ": " + self.title
@@ -97,7 +92,7 @@ class Tutorial(models.Model):
 class FavoriteLink(models.Model):
 	authorID = models.ForeignKey(Author, related_name='author_favoriteLink')
 	title = models.CharField(max_length=256)
-	description = models.TextField()
+	description = models.TextField(null=True, blank=True)
 	URL = models.CharField(max_length=256)
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.authorID + ": " + self.title
@@ -106,8 +101,8 @@ class FavoriteLink(models.Model):
 
 class Bio(models.Model):
 	authorID = models.ForeignKey(Author, related_name='author_bio')
-	title = models.CharField(max_length=256)
-	subtitle = models.CharField(max_length=256)
+	title = models.CharField(max_length=256, null=True, blank=True)
+	subtitle = models.CharField(max_length=256, null=True, blank=True)
 	body = models.TextField()
 	hometown = models.CharField(max_length=50)
 	hobbies = models.TextField()
