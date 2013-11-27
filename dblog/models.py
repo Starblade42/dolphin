@@ -19,7 +19,7 @@ class Blog(models.Model):
 	authorID = models.ForeignKey(Author, related_name='author_blog')
 	title = models.CharField(max_length=120)
 	subtitle = models.CharField(max_length=120)
-	editor = models.ForeignKey(Author, blank=True, related_name='author_blog_editor')
+	editor = models.ForeignKey(Author, null=True, blank=True, related_name='author_blog_editor')
 	def __unicode__(self):  # Python 3: def __str__(self):
         	return self.blogID + ": " + self.title
 	
