@@ -106,11 +106,11 @@ ROOT_URLCONF = 'dolphin.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'dolphin.wsgi.application'
 
-TEMPLATE_DIRS = (
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-)
+]
 
 INSTALLED_APPS = (
     'django.contrib.admin',
