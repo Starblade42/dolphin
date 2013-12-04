@@ -1,0 +1,11 @@
+<h1>Choose Your Blog Author</h1>
+
+{% if author_list %}
+    <ul>
+    {% for author in author_list %}
+        <li><a href="/dblog/{{ author.id }}/">{{author.lastName}}, {{author.firstName}}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No authors are available.</p>
+{% endif %}
