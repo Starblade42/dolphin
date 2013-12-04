@@ -1,12 +1,13 @@
-from django.http import HttpResponse
-from django.template import RequestContext, loader
+from django.http import Http404
+from django.shortcuts import render
 
 from dblog.models import Author
 
 def index(request):
     author_list = Author.objects.order_by('lastName')
-    template = loader.get_template('dblog/index.html')
-    context = RequestContext(request, {
-        'author_list': author_list,
-    })
-    return HttpResponse(template.render(context))
+    context = {'author_list': author_list}
+    return render(request, 'dblog/index.html', context)
+
+def detail(request, author_id):
+	author = get_object_or_404(Author, pk=author_id)
+	return render(request, 'dblog/detail.html', {'author': author})
