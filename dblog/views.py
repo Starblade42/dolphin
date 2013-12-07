@@ -10,7 +10,7 @@ def index(request):
     context = {'author_list': author_list}
     return render(request, 'dblog/index.html', context)
 
-def detail(request, author_id):
-	author = get_object_or_404(Author, pk=author_id)
+def detail(request, author_ID):
+	author = get_object_or_404(Author, pk=author_ID)
 	blog_list = Blog.objects.order_by('title')
-	return render(request, 'dblog/detail.html', {'author': author, 'blog_list': blog_list})
+	return render(request, 'dblog/detail.html', {'author': author, 'blog_list': blog_list}) 

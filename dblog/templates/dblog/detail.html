@@ -1,6 +1,8 @@
 <h3>{{ author.authorID }}</h3>
 <ul>
 {% for blog in blog_list %}
-    <li>{{ blog.authorID }}</li>
+	{% if blog.authorID == author %}
+    <li>{{ blog.title }}</li>
+	{% endif %}
 {% endfor %}
 </ul>

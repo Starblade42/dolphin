@@ -4,5 +4,5 @@ from dblog import views
 
 urlpatterns = patterns('',
     url(r'^$', views.index, name='index'),
-    url(r'^(?P<author_id>\d+)/$', views.detail, name='detail')
+    url(r'^(?P<author_ID>\d+)/$', views.detail, name='detail')
 )
