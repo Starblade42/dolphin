@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
 from dblog.models import Author
+from dblog.models import Blog
 
 def index(request):
     author_list = Author.objects.order_by('lastName')
@@ -11,4 +12,5 @@ def index(request):
 
 def detail(request, author_id):
 	author = get_object_or_404(Author, pk=author_id)
-	return render(request, 'dblog/detail.html', {'author': author})
+	blog_list = Blog.objects.order_by('title')
+	return render(request, 'dblog/detail.html', {'author': author, 'blog_list': blog_list})

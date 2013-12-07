@@ -1,6 +1,6 @@
-<h1>{{ author.authorID }}</h1>
+<h3>{{ author.authorID }}</h3>
 <ul>
-{% for blog in blog.choice_set.all %}
-    <li>{{ blog.title }}</li>
+{% for blog in blog_list %}
+    <li>{{ blog.authorID }}</li>
 {% endfor %}
 </ul>
