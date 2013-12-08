@@ -96,7 +96,7 @@ class FavoriteLink(models.Model):
 	description = models.TextField(null=True, blank=True)
 	URL = models.CharField(max_length=256)
 	def __unicode__(self):  # Python 3: def __str__(self):
-        	return self.authorID + ": " + self.title
+        	return str(self.authorID) + ": " + self.title
 
 #Bio	authorID	title	subtitle	body	hometown	hobbies
 
@@ -108,4 +108,4 @@ class Bio(models.Model):
 	hometown = models.CharField(max_length=50)
 	hobbies = models.TextField()
 	def __unicode__(self):  # Python 3: def __str__(self):
-        	return self.authorID + ": " + self.title
+        	return str(self.authorID) + ": " + self.title
