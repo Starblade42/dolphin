@@ -3,7 +3,7 @@
 {% if author_list %}
     <ul>
     {% for author in author_list %}
-        <li><a href="/dblog/{{ author.id }}/">{{author.lastName}}, {{author.firstName}}</a></li>
+        <li><a href="/dblog/{{ author.authorID }}/">{{author.lastName}}, {{author.firstName}}</a></li>
     {% endfor %}
     </ul>
 {% else %}
