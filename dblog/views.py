@@ -24,3 +24,6 @@ def detail(request, author_ID):
 	bio_list = Bio.objects.order_by('authorID')
 	return render(request, 'dblog/detail.html', {'author': author, 'blog_list': blog_list, 'links': links, 'bio_list': bio_list}) 
 
+def blog(request, author_ID, blog_ID):
+        author = get_object_or_404(Author, authorID__exact=author_ID)
+        return render(request, 'dblog/blog.html', {'author': author})
