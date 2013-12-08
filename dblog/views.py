@@ -26,4 +26,5 @@ def detail(request, author_ID):
 
 def blog(request, author_ID, blog_ID):
         author = get_object_or_404(Author, authorID__exact=author_ID)
+	blog = get_object_or_404(Blog, blogID__exact=blog_ID)
         return render(request, 'dblog/blog.html', {'author': author})
