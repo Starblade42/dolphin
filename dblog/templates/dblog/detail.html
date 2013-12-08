@@ -1,5 +1,5 @@
-<h3>User: {{ author.authorID }}</h3>
-<h4>My Blogs</h4>
+<h2>User: {{ author.authorID }}</h2>
+<h3>My Blogs</h3>
 <ul>
 {% for blog in blog_list %}
 	{% if blog.authorID == author %}
@@ -8,7 +8,7 @@
 {% endfor %}
 </ul>
 
-<h4>My Favorite Links</h4>
+<h3>My Favorite Links</h3>
 <ul>
 {% for favoritelink in links %}
 	{% if favoritelink.authorID == author %}
@@ -18,11 +18,14 @@
 
 </ul>
 
-<h4>About Me</h4>
-<p>
+<h3>About Me</h3>
 {% for bio in bio_list %}
 	{% if bio.authorID == author %}
-    	{{ bio.body }}
+    	<p>
+    		My Hometown: {{ bio.hometown}}
+    	</p>
+    	<p>
+    		{{ bio.body }}
+    	</p>
 	{% endif %}
 {% endfor %}
-</p>
