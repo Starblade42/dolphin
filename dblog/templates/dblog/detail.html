@@ -12,7 +12,7 @@
 <ul>
 {% for favoritelink in link_list %}
 	{% if favoritelink.authorID == author %}
-    <li>{{ favoriteLink.authorID }}</li>
+    <li> Favorite: {{ favoritelink.title }}</li>
 	{% endif %}
 {% endfor %}
 
