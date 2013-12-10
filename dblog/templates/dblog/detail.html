@@ -1,3 +1,8 @@
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'dblog/style.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'dblog/bootstrap.min.css' %}"/>
+
 <h2>User: {{ author.authorID }}</h2>
 <h3>My Blogs</h3>
 <ul>

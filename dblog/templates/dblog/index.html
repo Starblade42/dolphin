@@ -1,4 +1,11 @@
-<h1>Choose Your Blog Author</h1>
+{% load staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'dblog/style.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'dblog/bootstrap.min.css' %}"/>
+
+<h1>Dolphin</h1>
+<div class="dolphin-icon"></div>
+<p>Welcome to Dolphin, the blogging website designed for technologically minded bloggers</p>
 
 {% if author_list %}
     <ul>
