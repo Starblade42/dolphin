@@ -17,7 +17,7 @@
 <ul>
 {% for favoritelink in link_list %}
 	{% if favoritelink.authorID == author %}
-    <li> Favorite: {{ favoritelink.title }}</li>
+    <li> Favorite: <a href="{{ favoritelink.url }}">{{ favoritelink.title }}</a></li>
 	{% endif %}
 {% endfor %}
 
@@ -26,9 +26,9 @@
 <h3>About Me</h3>
 {% for bio in bio_list %}
 	{% if bio.authorID == author %}
-    	<p>
+    	<h4>
     		My Hometown: {{ bio.hometown}}
-    	</p>
+    	</h4>
     	<p>
     		{{ bio.body }}
     	</p>
