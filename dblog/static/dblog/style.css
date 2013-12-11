@@ -1,0 +1,50 @@
+.article_title{
+	
+}
+.article_body{
+	page-break-after:always;
+}
+.dolphin-icon{
+
+  box-shadow:
+    0 0 0 1em #3498DB,
+    0 1em 0 1em #3498DB,
+    -2.5em 1.5em 0 .5em #3498DB,
+    2.5em 1.5em 0 .5em #3498DB,
+    0em -3em 0 0 #3498DB,
+    0em -2em 0 0 #3498DB,
+    1em -2em 0 0 #3498DB,
+    -3em -1em 0 0 #3498DB,
+    -2em -1em 0 0 #3498DB,
+    2em -1em 0 0 #3498DB,
+    3em -1em 0 0 #3498DB,
+    -4em 0 0 0 #3498DB,
+    -3em 0 0 0 #3498DB,
+    3em 0 0 0 #3498DB,
+    4em 0 0 0 #3498DB,
+    2em 0em 0 0 #3498DB,
+    -2em 0em 0 0 #3498DB,
+    -5em 1em 0 0 #3498DB,
+    -4em 1em 0 0 #3498DB,
+    4em 1em 0 0 #3498DB,
+    5em 1em 0 0 #3498DB,
+    -5em 2em 0 0 #3498DB,
+    -4em 2em 0 0 #3498DB,
+    5em 2em 0 0 #3498DB,
+    -5em 3em 0 0 #3498DB,
+    -5em 4em 0 0 #3498DB,
+    -4em 3em 0 0 #3498DB,
+    3em 3em 0 0 #3498DB,
+    4em 3em 0 0 #3498DB,
+    5em 3em 0 0 #3498DB,
+    2em 3em 0 0 #3498DB,
+    3em 4em 0 0 #3498DB,
+    4em 4em 0 0 #3498DB;
+
+    background: #3498DB;
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+
+    margin: 50px 0 70px 65px;
+  }
